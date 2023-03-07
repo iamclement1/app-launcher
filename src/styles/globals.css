@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: 'MTNBrighterSans-ExtraBold';
+    src: url('../assets/fonts/MTNBrighterSans-ExtraBold.ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MTNBrighterSans-Medium';
+    src: url('../assets/fonts/MTNBrighterSans-Medium.ttf');
+}
+
+.header {
+    font-family: MTNBrighterSans-ExtraBold;
+    font-weight: 700;
+    font-style: normal;
+}
+.description {
+    font-family: MTNBrighterSans-Medium;
+    font-weight: 200;
+    font-style: normal;
+}
