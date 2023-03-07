@@ -34,7 +34,7 @@ export default function Home() {
             <div className='flex justify-between items-start mt-8 px-8 '>
               <Link href="/">
                 <Image src={Logo} alt='logo' width={100} height={100}
-                  className='cursor-pointer'
+                  className='cursor-pointer w-20'
                 />
               </Link>
               <div>
