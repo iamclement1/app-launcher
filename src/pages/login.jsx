@@ -7,10 +7,17 @@ import Yello from '../assets/Yello.svg';
 import { BsEyeSlashFill } from 'react-icons/bs';
 import { FaArrowRight } from 'react-icons/fa'
 import Link from "next/link";
+import { useState } from "react";
 
 
 
 export default function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const Login = (e) => {
+        e.preventDefault();
+    }
     return (
         <>
             <Head>
@@ -44,19 +51,22 @@ export default function Login() {
                             <input type="email" className="border-[0.2px] transition duration-500 
                             placeholder-[#666] focus:placeholder-transparent border-[#ffffff1f] w-[280px] description
                                 px-4 py-2 bg-[#212121] text-gray-50 rounded-md focus:outline-none"
-                                placeholder="Email" />
+                                placeholder="Email" 
+                                onChange={() => setEmail(e.target.value)}/>
 
                         </div>
                         {/* Password input */}
                         <div className="px-6 py-1">
                             <input type="password" className="border-[0.2px] transition duration-500 
                             placeholder-[#666] focus:placeholder-transparent border-[#ffffff1f] w-[280px] 
-                                px-4 py-2 bg-[#212121] text-gray-50 rounded-md focus:outline-none"
-                                placeholder="Password" />
+                                px-4 py-2 bg-[#212121] text-gray-50 rounded-md focus:outline-none description"
+                                placeholder="Password" 
+                                onChange={() => setPassword(e.target.value)}/>
                             <BsEyeSlashFill className="text-[#888888] relative bottom-7 left-64" />
                         </div>
 
-                        <div className="mx-6 flex items-center space-x-7 bg-[#FFCB03] w-[170px] rounded-full mb-3">
+                        <div className="mx-6 flex items-center space-x-7 bg-[#FFCB03] w-[170px] rounded-full mb-3"
+                        onClick={Login}>
                             <button className=" py-3 px-3 description ">
                                 Continue
                             </button>
