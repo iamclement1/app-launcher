@@ -40,10 +40,9 @@ export default function Home() {
               <div>
                 <input type="text" className="border-[0.2px] transition duration-500 
               placeholder-[#ffffff1f] focus:placeholder-transparent border-[#ffffff1f] w-[280px] 
-              px-12 py-2 bg-black text-gray-50 rounded-full focus:outline-none"
+              px-12 py-2 bg-black text-gray-50 rounded-full focus:outline-none description"
                   placeholder="Search" />
                 <RiSearch2Line className='tex-gray-200 text-[#ffffff4d] relative bottom-7 ml-4 text-sm' />
-
               </div>
             </div>
             <main className='px-8 mt-12 '>
@@ -60,7 +59,7 @@ export default function Home() {
                       <>
                         <div
                           key={index.id}
-                          className='w-[155px] items-center shadow-md mb-4
+                          className='w-[155px]  items-center shadow-md mb-4
                         bg-black border border-[#ffffff1f]
                         rounded-md p-4 mt-4'>
                           <Image src={index.icon} alt="Logo"

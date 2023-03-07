@@ -15,6 +15,7 @@ export default function Index() {
     const uploadImage = (e) => {
 
     }
+    
     return (
         <>
             <main className="flex">
