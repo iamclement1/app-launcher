@@ -47,25 +47,25 @@ export default function Home() {
               </div>
             </div>
             <main className='px-8 mt-12 '>
-              <h1 className='text-white text-3xl font-bold font-mono'>Applications Launcher</h1>
-              <p className='text-sm text-[#7A7A7A] font-semibold font-mono mt-2'>
+              <h1 className='text-white text-3xl font-bold header'>Applications Launcher</h1>
+              <p className='text-sm text-[#7A7A7A] font-semibold font-mono mt-2 description'>
                 All your apps in one place
               </p>
               {/* cards */}
 
-              <div className='grid grid-cols-4 gap-5'>
+              <div className='grid grid-cols-4 gap-8'>
                 {
                   DashboardCard.length > 0 && DashboardCard.map((index) => {
                     return (
                       <>
                         <div
                           key={index.id}
-                          className='w-[150px] items-center shadow-md mb-4
+                          className='w-[155px] items-center shadow-md mb-4
                         bg-black border border-[#ffffff1f]
                         rounded-md p-4 mt-4'>
                           <Image src={index.icon} alt="Logo"
                             className='w-10 h-10 bg-[#292727cf] px-3 py-2 rounded-sm' />
-                          <p className='text-white font-semibold text-sm mt-8'>
+                          <p className='text-white description text-sm mt-8'>
                             {index.description}
                           </p>
                         </div>
@@ -76,8 +76,8 @@ export default function Home() {
               </div>
 
               <Link href="/login">
-                <div className="flex items-center space-x-7 bg-[#FFCB03] w-[240px] rounded-full mb-3 mt-3">
-                  <button className=" py-3 px-3 text-xs font-bold cursor-pointer">
+                <div className="flex items-center space-x-7 bg-[#FFCB03] w-[220px] rounded-full mb-3 mt-3">
+                  <button className=" py-3 px-3 text-xs description cursor-pointer">
                     View all applications
                   </button>
                   <FaArrowRight className="flex items-center  justify-center 

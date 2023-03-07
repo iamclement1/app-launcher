@@ -24,25 +24,25 @@ export default function Login() {
                     priority={true} unoptimized={true}
                     className="w-full h-screen object-cover absolute mix-blend-overlay " />
                 {/* login form */}
-                <div className="md:px-12 px-4 md:w-3/6">
+                <div className="md:px-12 px-2 md:w-5/6 lg:w-3/6">
 
                     {/* brand logo */}
                     <Link href="/home">
                         <Image src={Logo} alt="logo"
                             className="py-12 cursor-pointer" />
                     </Link>
-                    <form className="bg-black/50 backdrop-blur-md md:w-4/6 w-full rounded-3xl
+                    <form className="bg-black/50 backdrop-blur-md md:w-4/6  w-full rounded-3xl
                     md:p-5 p-3">
                         <Image src={Yello} alt="yellow-text"
                             className="px-6 mt-8" />
-                        <p className="text-xs text-[#999999] px-6">
+                        <p className="text-xs text-[#999999] px-6 mt-2 description">
                             Welcome back! please enter your details
                         </p>
                         {/* Email input */}
                         <div className="px-6 py-6">
 
                             <input type="email" className="border-[0.2px] transition duration-500 
-                            placeholder-[#666] focus:placeholder-transparent border-[#ffffff1f] w-[280px] 
+                            placeholder-[#666] focus:placeholder-transparent border-[#ffffff1f] w-[280px] description
                                 px-4 py-2 bg-[#212121] text-gray-50 rounded-md focus:outline-none"
                                 placeholder="Email" />
 
@@ -57,7 +57,7 @@ export default function Login() {
                         </div>
 
                         <div className="mx-6 flex items-center space-x-7 bg-[#FFCB03] w-[170px] rounded-full mb-3">
-                            <button className=" py-3 px-3 ">
+                            <button className=" py-3 px-3 description ">
                                 Continue
                             </button>
                             <FaArrowRight className="flex items-center  justify-center 
