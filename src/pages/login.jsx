@@ -2,21 +2,22 @@ import Head from "next/head";
 import Image from "next/image";
 import bg from '../assets/Frame.png';
 import Logo from '../assets/Vectormtn.svg';
-import Background from '../assets/login.svg'
+import Background from '../assets/login.jpg'
 import Yello from '../assets/Yello.svg';
 import { BsEyeSlashFill } from 'react-icons/bs';
 import { FaArrowRight } from 'react-icons/fa'
 import Link from "next/link";
-import { useState } from "react";
-
-
+import { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const Login = (e) => {
-        e.preventDefault();
+    const handleLogin = (e) => {
+        // e.preventDefault();
+        console.table({ email: emailRef.current.value, password: passwordRef.current.value });
     }
     return (
         <>
@@ -38,7 +39,8 @@ export default function Login() {
                         <Image src={Logo} alt="logo"
                             className="py-12 cursor-pointer" />
                     </Link>
-                    <form className="bg-black/50 backdrop-blur-md md:w-4/6  w-full rounded-3xl
+                    <form onSubmit={handleSubmit(handleLogin)}
+                        className="bg-black/50 backdrop-blur-md md:w-4/6  w-full rounded-3xl
                     md:p-5 p-3">
                         <Image src={Yello} alt="yellow-text"
                             className="px-6 mt-8" />
@@ -47,26 +49,41 @@ export default function Login() {
                         </p>
                         {/* Email input */}
                         <div className="px-6 py-6">
-
+                            <label htmlFor="email"></label>
                             <input type="email" className="border-[0.2px] transition duration-500 
                             placeholder-[#666] focus:placeholder-transparent border-[#ffffff1f] w-[280px] description
                                 px-4 py-2 bg-[#212121] text-gray-50 rounded-md focus:outline-none"
-                                placeholder="Email" 
-                                onChange={() => setEmail(e.target.value)}/>
-
+                                placeholder="Email"
+                                ref={emailRef}
+                                {...register('email', { required: true })}
+                            />
+                            {errors.email && errors.email.type === "required" && <p 
+                            className="text-red-700 bg-white p-1
+                            rounded-md text-center description w-[280px] mt-3">
+                                Email is required
+                            </p>}
                         </div>
                         {/* Password input */}
                         <div className="px-6 py-1">
+                            <label htmlFor="password"></label>
                             <input type="password" className="border-[0.2px] transition duration-500 
                             placeholder-[#666] focus:placeholder-transparent border-[#ffffff1f] w-[280px] 
                                 px-4 py-2 bg-[#212121] text-gray-50 rounded-md focus:outline-none description"
-                                placeholder="Password" 
-                                onChange={() => setPassword(e.target.value)}/>
+                                placeholder="Password"
+                                ref={passwordRef}
+                                {...register('password', { required: true })}
+                            />
+
                             <BsEyeSlashFill className="text-[#888888] relative bottom-7 left-64" />
+                            {errors.password && errors.password.type === "required" && <p 
+                            className="text-red-700 bg-white p-1
+                            rounded-md text-center description w-[280px]">
+                                Password is required
+                            </p>}
                         </div>
 
                         <div className="mx-6 flex items-center space-x-7 bg-[#FFCB03] w-[170px] rounded-full mb-3"
-                        onClick={Login}>
+                        >
                             <button className=" py-3 px-3 description ">
                                 Continue
                             </button>
