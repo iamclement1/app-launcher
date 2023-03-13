@@ -143,7 +143,7 @@ export default function Sidebar({ children }, props) {
                                     <p>Add application</p>
                                 </div>
                             </Link>
-                            <div className="flex items-center justify-center uppercase">
+                            <div className="flex items-center justify-center uppercase space-x-2">
                                 <p className=" flex items-center justify-center h-8 w-8 text-sm bg-[#396587] rounded-full cursor-pointer
                         text-white ">AC</p>
                                 <AiOutlineDown className="cursor-pointer justify-center text-white" />

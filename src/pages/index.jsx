@@ -9,10 +9,34 @@ import { DashboardCard } from '../utils/dashboard';
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
 import icon from '../assets/Union.svg';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { Loader } from '@/components';
 
 
 
 export default function Home() {
+
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      setIsLoading(true);
+    }
+    const handleRouteChangeComplete = () => {
+      setIsLoading(false)
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+    router.events.on('routeChangeComplete', handleRouteChangeComplete)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+      router.events.off('routeChangeComplete', handleRouteChangeComplete)
+    }
+  }, [router.events])
   return (
     <>
       <Head>
@@ -21,71 +45,75 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico " />
       </Head>
-      <main className='h-90 w-full relative'>
-        <Image src={bg} alt="background" priority={true}
-          unoptimized={true}
-          className='w-full h-auto object-cover absolute mix-blend-overlay' />
+      {
+        isLoading ? <Loader /> : <>
+          <main className='h-90 w-full relative'>
+            <Image src={bg} alt="background" priority={true}
+              unoptimized={true}
+              className='w-full h-auto object-cover absolute mix-blend-overlay' />
 
-        {/* section com */}
-        <section className='w-3/6 absolute'>
-          <div>
-            <div className='flex justify-between items-start mt-8 px-8 '>
-              <Link href="/">
-                <Image src={Logo} alt='logo' width={100} height={100}
-                  className='cursor-pointer w-20'
-                />
-              </Link>
+            {/* section com */}
+            <section className='w-3/6 absolute'>
               <div>
-                <input type="text" className="border-[0.2px] transition duration-500 
+                <div className='flex justify-between items-start mt-8 px-8 '>
+                  <Link href="/">
+                    <Image src={Logo} alt='logo' width={100} height={100}
+                      className='cursor-pointer w-20'
+                    />
+                  </Link>
+                  <div>
+                    <input type="text" className="border-[0.2px] transition duration-500 
               placeholder-[#ffffff1f] focus:placeholder-transparent border-[#ffffff1f] w-[280px] 
               px-12 py-2 bg-black text-gray-50 rounded-full focus:outline-none description"
-                  placeholder="Search" />
-                <RiSearch2Line className='tex-gray-200 text-[#ffffff4d] relative bottom-7 ml-4 text-sm' />
-              </div>
-            </div>
-            <main className='px-8 mt-12 '>
-              <h1 className='text-white text-3xl font-bold header'>Applications Launcher</h1>
-              <p className='text-sm text-[#7A7A7A] font-semibold font-mono mt-2 description'>
-                All your apps in one place
-              </p>
-              {/* cards */}
+                      placeholder="Search" />
+                    <RiSearch2Line className='tex-gray-200 text-[#ffffff4d] relative bottom-7 ml-4 text-sm' />
+                  </div>
+                </div>
+                <main className='px-8 mt-12 '>
+                  <h1 className='text-white text-3xl font-bold header'>Applications Launcher</h1>
+                  <p className='text-sm text-[#7A7A7A] font-semibold font-mono mt-2 description'>
+                    All your apps in one place
+                  </p>
+                  {/* cards */}
 
-              <div className='grid grid-cols-4 gap-8'>
-                {
-                  DashboardCard.length > 0 && DashboardCard.map((index) => {
-                    return (
-                      <>
-                        <div
-                          key={index.id}
-                          className='w-[155px]  items-center shadow-md mb-4
+                  <div className='grid grid-cols-4 gap-8'>
+                    {
+                      DashboardCard.length > 0 && DashboardCard.map((index) => {
+                        return (
+                          <>
+                            <div
+                              key={index.id}
+                              className='w-[155px]  items-center shadow-md mb-4
                         bg-black border border-[#ffffff1f]
                         rounded-md p-4 mt-4'>
-                          <Image src={index.icon} alt="Logo"
-                            className='w-10 h-10 bg-[#292727cf] px-3 py-2 rounded-sm' />
-                          <p className='text-white description text-sm mt-8'>
-                            {index.description}
-                          </p>
-                        </div>
-                      </>
-                    )
-                  })
-                }
-              </div>
+                              <Image src={index.icon} alt="Logo"
+                                className='w-10 h-10 bg-[#292727cf] px-3 py-2 rounded-sm' />
+                              <p className='text-white description text-sm mt-8'>
+                                {index.description}
+                              </p>
+                            </div>
+                          </>
+                        )
+                      })
+                    }
+                  </div>
 
-              <Link href="/login">
-                <div className="flex items-center space-x-7 bg-[#FFCB03] w-[220px] rounded-full mb-3 mt-3">
-                  <button className=" py-3 px-3 text-xs description cursor-pointer">
-                    View all applications
-                  </button>
-                  <FaArrowRight className="flex items-center  justify-center 
+                  <Link href="/login">
+                    <div className="flex items-center space-x-7 bg-[#FFCB03] w-[220px] rounded-full mb-3 mt-3">
+                      <button className=" py-3 px-3 text-xs description cursor-pointer">
+                        View all applications
+                      </button>
+                      <FaArrowRight className="flex items-center  justify-center 
                             text-xl h-5 w-5 p-1.5 text-white bg-black rounded-full" />
-                </div>
-              </Link>
+                    </div>
+                  </Link>
 
-            </main>
-          </div>
-        </section>
-      </main>
+                </main>
+              </div>
+            </section>
+          </main>
+        </>
+      }
     </>
   )
 }
