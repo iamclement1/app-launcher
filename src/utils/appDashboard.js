@@ -90,3 +90,24 @@ export const homeCard = [
         description: "After Sales Support Platform",
     },
 ]
+
+export const sideMenu = [
+    {
+        id: 1,
+        name: "Dashboard",
+        link: "/app/Dashboard",
+        gap: 4,
+    },
+    {
+        id: 2,
+        name: "Applications",
+        link: "/app",
+        gap: 4,
+    },
+    {
+        id: 3,
+        name: "Setup",
+        link: "/app/Setup",
+        gap: 4,
+    }
+]

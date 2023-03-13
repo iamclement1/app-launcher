@@ -1,10 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css';
 import { RiSearchLine } from 'react-icons/ri'
 import Logo from '../assets/Vectormtn.svg';
-import bg from '../assets/background.svg'
+import bg from '../assets/background.jpg'
 import { RiSearch2Line } from 'react-icons/ri'
 import { DashboardCard } from '../utils/dashboard';
 import Link from 'next/link';
@@ -12,7 +11,6 @@ import { FaArrowRight } from 'react-icons/fa';
 import icon from '../assets/Union.svg';
 
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
