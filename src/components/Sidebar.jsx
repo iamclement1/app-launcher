@@ -46,7 +46,7 @@ export default function Sidebar({ children }, props) {
                                 {/* Desktop screen side bar menu */}
 
                                 <div className="Sidebar">
-                                    <div className={`h-screen bg-black/10
+                                    <div className={`h-screen bg-black/40
                                 ${isOpen ? 'w-72' : 'w-20'} duration-200 
                                 ease-in-out p-3 pt-32 hidden md:block text-black`}>
                                         {/* <div className="flex gap-x-4 items-center">
@@ -83,7 +83,7 @@ export default function Sidebar({ children }, props) {
 
                                 {/* mobile screen side bar menu */}
 
-                                <div className={`h-screen bg-black/10 
+                                <div className={`h-screen bg-black/40 
                         ${isOpen ? 'w-72' : 'hidden'} p-3 pt-8 md:hidden
                         relative flex flex-col z-10 ease-in-out duration-200`}>
                                     <div className="flex gap-x-4 items-center">
@@ -119,7 +119,7 @@ export default function Sidebar({ children }, props) {
 
                     {/* beginning of navbar/header */}
 
-                    <nav className="w-full flex items-center justify-between px-5 py-3 bg-black/10 fixed z-10">
+                    <nav className="w-full flex items-center justify-between px-5 py-3 bg-black/40 fixed z-10">
                         <Link href={'/'}>
                             <Image src={Logo} alt="alt" />
                         </Link>
@@ -135,7 +135,7 @@ export default function Sidebar({ children }, props) {
                         </div>
 
                         {/* user dropdown */}
-                        <div className="flex items-center space-x-2 mb-3">
+                        <div className="flex items-center space-x-4 mb-3">
                             <Link href={"/app"}>
                                 <div className=" flex space-x-4 items-center bg-black/30 p-3
                             rounded-full text-gray-100 description cursor-pointer" type="button">
@@ -143,10 +143,11 @@ export default function Sidebar({ children }, props) {
                                     <p>Add application</p>
                                 </div>
                             </Link>
-                            <p className="flex items-center justify-center 
-                        uppercase h-8 w-8 text-sm bg-[#396587] rounded-full cursor-pointer
+                            <div className="flex items-center justify-center uppercase">
+                                <p className=" flex items-center justify-center h-8 w-8 text-sm bg-[#396587] rounded-full cursor-pointer
                         text-white ">AC</p>
-                            <AiOutlineDown className="cursor-pointer justify-center text-white" />
+                                <AiOutlineDown className="cursor-pointer justify-center text-white" />
+                            </div>
                         </div>
                     </nav>
 
