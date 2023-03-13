@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
 
 @font-face {
     font-family: 'MTNBrighterSans-ExtraBold';
@@ -15,13 +21,29 @@
     src: url('../assets/fonts/MTNBrighterSans-Medium.ttf');
 }
 
+@font-face {
+    font-family: 'MTNBrighterSans-Light';
+    src: url('../assets/fonts/MTNBrighterSans-Light.ttf');
+}
+
 .header {
     font-family: MTNBrighterSans-ExtraBold;
     font-weight: 700;
     font-style: normal;
 }
+
 .description {
     font-family: MTNBrighterSans-Medium;
     font-weight: 200;
     font-style: normal;
+}
+
+.light-font {
+    font-family: MTNBrightSans-Light;
+}
+
+/* sidebar */
+.SidebarList #active {
+    background-color: #FFCB03;
+    color: #ffffff;
 }
