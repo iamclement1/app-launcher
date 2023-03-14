@@ -111,3 +111,14 @@ export const sideMenu = [
         gap: 4,
     }
 ]
+
+export const ReleaseType = [
+    {
+        id: 1,
+        name: "new",
+    },
+    {
+        id: 2, 
+        name: "upgrade"
+    }
+]
