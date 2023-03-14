@@ -14,7 +14,6 @@ export default function Sidebar({ children }, props) {
     const [isOpen, setIsOpen] = useState(true) //set sidebar to open by default
 
 
-
     //getting location pathname
     const location = useRouter();
 
@@ -120,7 +119,7 @@ export default function Sidebar({ children }, props) {
                     {/* beginning of navbar/header */}
 
                     <nav className="w-full flex items-center justify-between px-5 py-3 bg-black/40 fixed z-10">
-                        <Link href={'/'}>
+                        <Link href={'/app/Dashboard'}>
                             <Image src={Logo} alt="alt" />
                         </Link>
 
@@ -154,7 +153,7 @@ export default function Sidebar({ children }, props) {
                     {/* end of navbar/header ...... */}
 
                     {/* beginning of children props component */}
-                    <div className="container-fluid">
+                    <div className="w-full ">
                         <div className="w-full">
                             <div className={`col-md-12 py-20 relative `}>
                                 <div className={` ${isOpen ? 'pl-72' : 'pl-14'} pl-0 md:pl-72 md:hidden duration-200 ease-in-out `}>
