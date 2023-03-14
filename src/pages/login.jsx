@@ -6,18 +6,45 @@ import Background from '../assets/login.jpg'
 import Yello from '../assets/Yello.svg';
 import { BsEyeSlashFill } from 'react-icons/bs';
 import { FaArrowRight } from 'react-icons/fa'
+import { ImSpinner2 } from 'react-icons/im'
+import { IoEyeSharp } from 'react-icons/io5'
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 export default function Login() {
-    const emailRef = useRef();
-    const passwordRef = useRef();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleLogin = (e) => {
-        // e.preventDefault();
-        console.table({ email: emailRef.current.value, password: passwordRef.current.value });
+    // show password
+    const togglePassword = () => {
+        setShowPassword(!showPassword)
+    }
+
+    const handleLogin = async (event) => {
+        setIsLoading(true);
+        // event.preventDefault();
+        console.table({ email, password });
+        const data = {
+            "email": email,
+            "password": password,
+        }
+
+        axios.post('https://applauncher.test/api/v1/login', data)
+            .then(response => {
+                console.log(response);
+                setIsLoading(false);
+            })
+
+            .catch(error => {
+                console.log(error.message)
+                setIsLoading(false);
+            })
+
     }
     return (
         <>
@@ -39,7 +66,7 @@ export default function Login() {
                         <Image src={Logo} alt="logo"
                             className="py-12 cursor-pointer" />
                     </Link>
-                    <form onSubmit={handleSubmit(handleLogin)}
+                    <form onSubmit={handleSubmit(handleLogin)} method="POST"
                         className="bg-black/50 backdrop-blur-md md:w-4/6  w-full rounded-3xl
                     md:p-5 p-3">
                         <Image src={Yello} alt="yellow-text"
@@ -54,11 +81,12 @@ export default function Login() {
                             placeholder-[#666] focus:placeholder-transparent border-[#ffffff1f] w-[280px] description
                                 px-4 py-2 bg-[#212121] text-gray-50 rounded-md focus:outline-none"
                                 placeholder="Email"
-                                ref={emailRef}
                                 {...register('email', { required: true })}
+                                // value={email}
+                                onClick={(event) => setEmail(event.target.value)}
                             />
-                            {errors.email && errors.email.type === "required" && <p 
-                            className="text-red-700 bg-white p-1
+                            {errors.email && errors.email.type === "required" && <p
+                                className="text-red-700 bg-white p-1
                             rounded-md text-center description w-[280px] mt-3">
                                 Email is required
                             </p>}
@@ -66,30 +94,59 @@ export default function Login() {
                         {/* Password input */}
                         <div className="px-6 py-1">
                             <label htmlFor="password"></label>
-                            <input type="password" className="border-[0.2px] transition duration-500 
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                className="border-[0.2px] transition duration-500 
                             placeholder-[#666] focus:placeholder-transparent border-[#ffffff1f] w-[280px] 
                                 px-4 py-2 bg-[#212121] text-gray-50 rounded-md focus:outline-none description"
                                 placeholder="Password"
-                                ref={passwordRef}
                                 {...register('password', { required: true })}
+                                // value={password}
+                                onClick={(event) => setPassword(event.target.value)}
                             />
 
-                            <BsEyeSlashFill className="text-[#888888] relative bottom-7 left-64" />
-                            {errors.password && errors.password.type === "required" && <p 
-                            className="text-red-700 bg-white p-1
+                            {showPassword ? <IoEyeSharp className="text-[#888888] relative bottom-7 left-64 cursor-pointer"
+                                onClick={togglePassword} /> :
+                                <>
+                                    <BsEyeSlashFill className="text-[#888888] relative bottom-7 left-64 cursor-pointer"
+                                        onClick={togglePassword} />
+                                </>
+                            }
+
+
+                            {errors.password && errors.password.type === "required" && <p
+                                className="text-red-700 bg-white p-1
                             rounded-md text-center description w-[280px]">
                                 Password is required
                             </p>}
                         </div>
 
-                        <div className="mx-6 flex items-center space-x-7 bg-[#FFCB03] w-[170px] rounded-full mb-3"
-                        >
-                            <button className=" py-3 px-3 description ">
-                                Continue
-                            </button>
-                            <FaArrowRight className="flex items-center  justify-center 
+                        <div>
+                            {!isLoading && (
+                                <div className="mx-6 flex items-center space-x-7 bg-[#FFCB03] 
+                        w-[170px] rounded-full mb-3">
+                                    <button className=" py-3 px-3 description ">
+                                        Continue
+                                    </button>
+                                    <FaArrowRight className="flex items-center  justify-center 
                             text-xl h-5 w-5 p-1.5 text-white bg-black rounded-full" />
+                                </div>
+
+                            )}
+
+                            {
+                                isLoading && (
+                                    <div className="mx-6 items-center space-x-7 bg-[#FFCB03] 
+                        w-[170px] rounded-full mb-3" disabled>
+                                        <button className=" py-3 px-3 description flex items-center
+                                            justify-center mx-auto" disabled>
+                                            <ImSpinner2 className="spinner mx-auto " />
+                                        </button>
+                                    </div>
+                                )
+                            }
                         </div>
+
                     </form>
                 </div>
             </main>
